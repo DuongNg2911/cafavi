@@ -4,7 +4,7 @@ import random
 
 from models import Cafe
 from database import SessionLocal
-from schema import Location
+from schema import NewCafe
 
 router = APIRouter()
 
@@ -42,3 +42,17 @@ def search(loc: str, db: Session = Depends(get_db)):
                 "Not Found": "Sorry, we don't have any cafe at that location"
             }
         }
+
+# POST 
+@router.post("/signin")
+
+@router.post("/signup")
+
+@router.post("/suggest_new_cafe")
+def suggest(cafe: NewCafe, db: Session = Depends(get_db)):
+    db_item = Cafe(**cafe.dict())
+    db.add(db_item)
+    db.commit()
+    db.refresh(db_item)
+
+    return db_item
