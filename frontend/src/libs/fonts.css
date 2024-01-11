@@ -1,0 +1,14 @@
+@font-face {
+  font-family: Italianno;
+  src: url("../assets/Italianno/Italianno-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: InterRegular;
+  src: url("../assets/Inter/static/Inter-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: InterSemiBold;
+  src: url("../assets/Inter/static/Inter-SemiBold.ttf") format("truetype");
+}
