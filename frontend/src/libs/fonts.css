@@ -12,3 +12,8 @@
   font-family: InterSemiBold;
   src: url("../assets/Inter/static/Inter-SemiBold.ttf") format("truetype");
 }
+
+@font-face {
+  font-family: InterBold;
+  src: url("../assets/Inter/static/Inter-Bold.ttf") format("truetype");
+}
