@@ -1,0 +1,233 @@
+.login-site-container {
+  height: 100%;
+  width: 100%;
+  z-index: 99;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  background: rgba(244, 234, 224, 0.8);
+}
+
+.login-site-container > .login-container {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 1);
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  height: fit-content;
+  padding: 48px 72px;
+  box-shadow: 40px 40px 60px 0px rgba(228, 230, 234, 0.74);
+  border-radius: 20px;
+}
+
+.login-site-container > .login-container > #login-content {
+  width: 396px;
+  height: fit-content;
+}
+
+.login-site-container > .login-container > #login-content > p {
+  margin: 0;
+  color: #101828;
+  font-family: InterSemiBold;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.login-site-container > .login-container > #email-enter-area {
+  height: fit-content;
+  width: fit-content;
+  margin-top: 32px;
+}
+
+.login-site-container
+  > .login-container
+  > #email-enter-area
+  > #email-enter-label
+  > p {
+  margin: 0;
+  color: #344054;
+  font-family: InterRegular;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.login-site-container
+  > .login-container
+  > #email-enter-area
+  > #email-enter-bar {
+  border-radius: 8px;
+  border: 1px solid #d0d5dd;
+  margin-top: 12px;
+  width: 396px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+.login-site-container
+  > .login-container
+  > #email-enter-area
+  > #email-enter-bar:focus-within {
+  border: 1px solid #d1e9ff;
+}
+
+.login-site-container
+  > .login-container
+  > #email-enter-area
+  > #email-enter-bar
+  > #email-input {
+  border: none;
+  width: 335px;
+  height: 14px;
+  padding: 12px 16px;
+}
+
+.login-site-container
+  > .login-container
+  > #email-enter-area
+  > #email-enter-bar
+  > #email-input:focus {
+  color: #344054;
+  outline: none !important;
+  font-family: InterRegular;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.login-site-container
+  > .login-container
+  > #email-enter-area
+  > #email-enter-bar
+  > #email-input::placeholder {
+  color: #344054;
+  font-family: InterRegular;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.login-site-container > .login-container > #password-enter-area {
+  height: fit-content;
+  width: fit-content;
+  margin-top: 32px;
+}
+
+.login-site-container
+  > .login-container
+  > #password-enter-area
+  > #password-enter-label {
+  display: flex;
+  justify-content: space-between;
+}
+
+.login-site-container
+  > .login-container
+  > #password-enter-area
+  > #password-enter-label
+  > p {
+  margin: 0;
+  color: #344054;
+  font-family: InterRegular;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.login-site-container
+  > .login-container
+  > #password-enter-area
+  > #password-enter-bar {
+  border-radius: 8px;
+  border: 1px solid #d0d5dd;
+  margin-top: 12px;
+  width: 396px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+.login-site-container
+  > .login-container
+  > #password-enter-area
+  > #password-enter-bar:focus-within {
+  border: 1px solid #d1e9ff;
+}
+
+.login-site-container
+  > .login-container
+  > #password-enter-area
+  > #password-enter-bar
+  > #password-input {
+  border: none;
+  width: 335px;
+  height: 14px;
+  padding: 12px 16px;
+}
+
+.login-site-container
+  > .login-container
+  > #password-enter-area
+  > #password-enter-bar
+  > #password-input:focus {
+  color: #344054;
+  outline: none !important;
+  font-family: InterRegular;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.login-site-container
+  > .login-container
+  > #password-enter-area
+  > #password-enter-bar
+  > #password-input::placeholder {
+  color: #344054;
+  font-family: InterRegular;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.login-site-container > .login-container > #login-button {
+  width: 396px;
+  height: 52px;
+  background: #1570ef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  margin-top: 32px;
+}
+
+.login-site-container > .login-container > #login-button > p {
+  color: #fcfcfd;
+  font-family: InterSemiBold;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%;
+  margin: 0;
+}
+
+.login-site-container > .login-container > .dummy {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.login-site-container > .login-container > .dummy > p {
+  margin: 0;
+  color: #98a2b3;
+  font-family: InterRegular;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.login-site-container > .login-container > .dummy > p > span {
+  color: #1570ef;
+}

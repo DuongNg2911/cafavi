@@ -1,4 +1,5 @@
 .navbar-container {
+  z-index: 90;
   background: #f4eae0;
   position: fixed;
   height: 60px;
@@ -119,6 +120,7 @@
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  cursor: pointer;
 }
 
 .navbar-container > #dropdown {

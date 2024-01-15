@@ -2,8 +2,16 @@ import "../styles/navbar.css";
 import "../libs/fonts.css";
 import logo from "../assets/logo.png";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { changeState } from "../states/login_state";
 
 export default function Navbar() {
+  const dispatch = useDispatch();
+
+  const loginClick = () => {
+    dispatch(changeState(true));
+  };
+
   const [filterClicked, setFilterClicked] = useState(false);
   const filterClick = () => {
     if (filterClicked === false) {
@@ -28,7 +36,7 @@ export default function Navbar() {
           <div className="link" id="suggest">
             <p>Suggest Places</p>
           </div>
-          <div id="login">
+          <div id="login" onClick={loginClick}>
             <p>Login</p>
           </div>
         </div>
