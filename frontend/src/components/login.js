@@ -3,16 +3,66 @@ import { useState } from "react";
 import "../styles/login.css";
 import "../libs/fonts.css";
 import api from "../api";
+import bcrypt from "bcryptjs";
 
 export default function Login() {
   const showLogin = useSelector((state) => state.showLogin.value);
   const [signup, setSignup] = useState(false);
 
   const LogIn = async () => {
-    const email = document.getElementById("email-input").value;
-    const params = { user_email: email };
-    const valid = await api.get("/check_email", { params });
-    console.log(valid);
+    if (signup === false) {
+      const email = document.getElementById("email-input").value;
+      const password = document.getElementById("password-input").value;
+
+      if (
+        (email === "" && password === "") ||
+        (email === "" && password !== "") ||
+        (email !== "" && password === "")
+      ) {
+        document.getElementById("email-input").value = "";
+        document.getElementById("password-input").value = "";
+        document.getElementById("password-enter-bar").style.border =
+          "1px solid red";
+        document.getElementById("email-enter-bar").style.border =
+          "1px solid red";
+      } else {
+        const params = { user_email: email };
+        const valid = await api.get("/check_email", { params });
+
+        if (typeof valid.data === "object") {
+          document.getElementById("email-input").value = "";
+          document.getElementById("password-input").value = "";
+          document.getElementById("password-enter-bar").style.border =
+            "1px solid red";
+          document.getElementById("email-enter-bar").style.border =
+            "1px solid red";
+        } else {
+          const hash = bcrypt.hashSync(password, valid.data);
+          const data = { hashed_password: hash, email: email };
+          const response = await api.post("/signin", data);
+          console.log(response);
+        }
+      }
+    } else {
+      const email = document.getElementById("email-input").value;
+      const password = document.getElementById("password-input").value;
+
+      if (
+        (email === "" && password === "") ||
+        (email === "" && password !== "") ||
+        (email !== "" && password === "")
+      ) {
+        document.getElementById("email-input").value = "";
+        document.getElementById("password-input").value = "";
+        document.getElementById("password-enter-bar").style.border =
+          "1px solid red";
+        document.getElementById("email-enter-bar").style.border =
+          "1px solid red";
+      } else {
+        const params = { email: email, password: password };
+        const response = await api.post("/signup", params);
+      }
+    }
   };
 
   return (

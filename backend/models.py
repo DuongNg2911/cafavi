@@ -1,4 +1,5 @@
 from database import Base
+from pydantic import BaseModel
 from sqlalchemy import Column, Integer, String
 
 class Cafe(Base):
@@ -14,3 +15,11 @@ class Cafe(Base):
     can_take_calls = Column(Integer)
     seats = Column(String)
     coffee_price = Column(String)
+
+class UserPasswordModel(BaseModel):
+    email: str
+    password: str
+
+class LogInModel(BaseModel):
+    hashed_password: str
+    email: str

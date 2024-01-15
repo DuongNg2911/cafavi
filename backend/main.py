@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from routes import router
 import models
 from database import engine
+from pymongo import MongoClient
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -20,3 +21,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+MONGODB_CONNECTION_URI="mongodb+srv://duongng2911:UlwBqpIC7PS2yDKW@user-password.oty9bv2.mongodb.net/?retryWrites=true&w=majority"
+
+client = MongoClient(MONGODB_CONNECTION_URI)
