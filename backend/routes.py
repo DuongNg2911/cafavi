@@ -33,14 +33,14 @@ def search(loc: str, db: Session = Depends(get_db)):
     data = db.query(Cafe).all()
     result = []
     for d in data:
-        if d.location == loc:
+        if d.name.lower() == loc.lower():
             result.append(d)
     if len(result) != 0:
         return result
     else:
         return {
             "error": {
-                "Not Found": "Sorry, we don't have any cafe at that location"
+                "Not Found": "Can't find cafe "
             }
         }
 
@@ -51,6 +51,11 @@ async def get_salt(user_email: str):
         return {"response":"Invalid email or password"}
     else:
         return user.get("salt")
+
+@router.get("/filter_by_purpose") 
+async def filter_data_by_purpose(db: Session = Depends(get_db)):
+    data = db.query(Cafe).filter(Cafe.has_sockets==1, Cafe.has_wifi==1, Cafe.can_take_calls==1,Cafe.has_toilet==1)
+    return data
 
 # POST 
 @router.post("/signin")
