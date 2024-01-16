@@ -6,9 +6,11 @@
   align-items: center;
   justify-content: center;
   background: rgba(244, 234, 224, 0.8);
+  cursor: pointer;
 }
 
 .login-site-container > .login-container {
+  z-index: 100;
   position: absolute;
   background-color: rgba(255, 255, 255, 1);
   display: flex;
@@ -195,7 +197,7 @@
 .login-site-container > .login-container > #login-button {
   width: 396px;
   height: 52px;
-  background: #1570ef;
+  background: #c08261;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -229,5 +231,5 @@
 }
 
 .login-site-container > .login-container > .dummy > p > span {
-  color: #1570ef;
+  color: #c08261;
 }

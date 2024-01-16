@@ -4,11 +4,19 @@ import "../styles/login.css";
 import "../libs/fonts.css";
 import api from "../api";
 import bcrypt from "bcryptjs";
+import { useDispatch } from "react-redux";
+import { changeState } from "../states/login_state";
 
 export default function Login() {
   const showLogin = useSelector((state) => state.showLogin.value);
   const [signup, setSignup] = useState(false);
+  const dispatch = useDispatch();
 
+  const LoginSiteOnclick = (e) => {
+    if (e.target === document.getElementById("login-site-container")) {
+      dispatch(changeState(false));
+    }
+  };
   const LogIn = async () => {
     if (signup === false) {
       const email = document.getElementById("email-input").value;
@@ -40,7 +48,16 @@ export default function Login() {
           const hash = bcrypt.hashSync(password, valid.data);
           const data = { hashed_password: hash, email: email };
           const response = await api.post("/signin", data);
-          console.log(response);
+          if (response.response === "Login Successfully") {
+            dispatch(changeState(false));
+          } else {
+            document.getElementById("email-input").value = "";
+            document.getElementById("password-input").value = "";
+            document.getElementById("password-enter-bar").style.border =
+              "1px solid red";
+            document.getElementById("email-enter-bar").style.border =
+              "1px solid red";
+          }
         }
       }
     } else {
@@ -61,6 +78,16 @@ export default function Login() {
       } else {
         const params = { email: email, password: password };
         const response = await api.post("/signup", params);
+        if (response === "Signup successfully") {
+          dispatch(changeState(false));
+        } else {
+          document.getElementById("email-input").value = "";
+          document.getElementById("password-input").value = "";
+          document.getElementById("password-enter-bar").style.border =
+            "1px solid red";
+          document.getElementById("email-enter-bar").style.border =
+            "1px solid red";
+        }
       }
     }
   };
@@ -68,7 +95,9 @@ export default function Login() {
   return (
     <div
       className="login-site-container"
+      id="login-site-container"
       style={{ display: showLogin === true ? "flex" : "none" }}
+      onClick={LoginSiteOnclick}
     >
       <div className="login-container">
         <div id="login-content">

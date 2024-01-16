@@ -2,14 +2,43 @@ import "../styles/navbar.css";
 import "../libs/fonts.css";
 import logo from "../assets/logo.png";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { changeState } from "../states/login_state";
+import api from "../api";
 
 export default function Navbar() {
+  const logged = useSelector((state) => state.logged.value);
+  const [showPurposeOptions, setShowPurposeOptions] = useState(false);
   const dispatch = useDispatch();
+
+  const handleKeyPress = async (e) => {
+    if (e.code === "Enter") {
+      e.preventDefault();
+      const data = { loc: document.querySelector("textarea").value };
+      const response = await api.get("/search", { params: data });
+      console.log(response);
+    }
+  };
+
+  const suggestClick = () => {
+    if (logged === false) {
+      dispatch(changeState(true));
+    }
+  };
 
   const loginClick = () => {
     dispatch(changeState(true));
+  };
+
+  const purposeClick = (e) => {
+    console.log(e.target, showPurposeOptions);
+    if (e.target === document.getElementById("purpose")) {
+      if (showPurposeOptions === false) {
+        setShowPurposeOptions(true);
+      } else {
+        setShowPurposeOptions(false);
+      }
+    }
   };
 
   const [filterClicked, setFilterClicked] = useState(false);
@@ -33,7 +62,7 @@ export default function Navbar() {
           <div className="link" id="filter" onClick={filterClick}>
             <p className="filter-text">Filters</p>
           </div>
-          <div className="link" id="suggest">
+          <div className="link" id="suggest" onClick={suggestClick}>
             <p>Suggest Places</p>
           </div>
           <div id="login" onClick={loginClick}>
@@ -82,9 +111,10 @@ export default function Navbar() {
               cols={70}
               wrap="off"
               style={{ border: "none", resize: "none" }}
+              onKeyDown={handleKeyPress}
             ></textarea>
           </div>
-          <div id="purpose">
+          <div id="purpose" onClick={purposeClick}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="22"
@@ -130,6 +160,22 @@ export default function Navbar() {
               />
             </svg>
             <p>Purpose</p>
+            <div
+              id="purpose-options"
+              style={{
+                display: showPurposeOptions === false ? "none" : "flex",
+              }}
+            >
+              <div className="option" id="option-1">
+                <input type="checkbox"></input>
+                <span>Working</span>
+              </div>
+
+              <div className="option" id="option-2">
+                <input type="checkbox"></input>
+                <span>Relaxing</span>
+              </div>
+            </div>
           </div>
           <div id="prices">
             <svg
